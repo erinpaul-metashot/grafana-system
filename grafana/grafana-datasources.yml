@@ -13,7 +13,7 @@ datasources:
     access: proxy
     orgId: 1
     uid: grafana_loki
-    url: ${RAILWAY_LOKI_URL:-http://loki.railway.internal:3100}
+    url: ${RAILWAY_LOKI_URL:-http://${{Loki.RAILWAY_PRIVATE_DOMAIN}}:3100}
     user:
     database:
     basicAuth: false
@@ -25,7 +25,7 @@ datasources:
     access: proxy
     orgId: 1
     uid: grafana_prometheus
-    url: ${RAILWAY_PROMETHEUS_URL:-http://prometheus.railway.internal:9090}
+    url: ${RAILWAY_PROMETHEUS_URL:-http://${{Prometheus.RAILWAY_PRIVATE_DOMAIN}}:9090}
     basicAuth: false
     editable: false
     isDefault: false
@@ -34,7 +34,7 @@ datasources:
     access: proxy
     orgId: 1
     uid: grafana_tempo
-    url: ${RAILWAY_TEMPO_URL:-http://tempo.railway.internal:3200}
+    url: ${RAILWAY_TEMPO_URL:-http://${{Tempo.RAILWAY_PRIVATE_DOMAIN}}:3200}
     basicAuth: false
     isDefault: false
     # https://grafana.com/docs/grafana/v11.5/datasources/tempo/configure-tempo-data-source/
