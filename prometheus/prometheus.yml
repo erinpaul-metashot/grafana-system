@@ -12,17 +12,17 @@ scrape_configs:
   - job_name: 'otel-collector'
     scrape_interval: 5s
     static_configs:
-      - targets: ['Otel-Collector:8889']
+      - targets: ['${PROMETHEUS_OTEL_TARGET:-otel-collector.railway.internal:8889}']
 
   - job_name: 'tempo'
     scrape_interval: 5s
     static_configs:
-      - targets: ['Tempo:3200']
+      - targets: ['${PROMETHEUS_TEMPO_TARGET:-tempo.railway.internal:3200}']
 
   - job_name: 'loki'
     scrape_interval: 5s
     static_configs:
-      - targets: ['Loki:3100']
+      - targets: ['${PROMETHEUS_LOKI_TARGET:-loki.railway.internal:3100}']
 
   # - job_name: 'jaeger'
   #   scrape_interval: 5s
@@ -35,5 +35,5 @@ scrape_configs:
     static_configs:
       # Note: In Railway, replace 'backend.railway.internal:4000' with your actual 
       # backend service's internal private URL and port.
-      - targets: ['backend.railway.internal:4000']
+      - targets: ['${PROMETHEUS_BACKEND_TARGET:-opengradhub-backend.railway.internal:4000}']
 
