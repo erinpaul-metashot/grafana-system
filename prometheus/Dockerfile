@@ -5,7 +5,6 @@ COPY prometheus.yml /etc/prometheus/prometheus.yml
 EXPOSE 9090
 
 CMD [ "--config.file=/etc/prometheus/prometheus.yml", \
-      "--config.expand-env=true", \
       "--storage.tsdb.path=/prometheus", \
       "--storage.tsdb.retention.time=365d", \
       "--web.console.libraries=/usr/share/prometheus/console_libraries", \
