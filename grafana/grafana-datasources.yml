@@ -64,6 +64,8 @@ datasources:
     url: https://sentry.io
     jsonData:
       orgSlug: opengrad
+    secureJsonData:
+      authToken: ${SENTRY_AUTH_TOKEN}
 
 
   # These two service have the same function with Tempo, no need to use all three.
