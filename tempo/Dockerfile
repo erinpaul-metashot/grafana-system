@@ -1,4 +1,5 @@
-FROM grafana/tempo:latest
+FROM grafana/tempo:2.1.1
+
 
 COPY tempo.yml /etc/tempo/tempo.yml
 
