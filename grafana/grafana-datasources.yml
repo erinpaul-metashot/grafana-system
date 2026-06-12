@@ -28,7 +28,7 @@ datasources:
     uid: grafana_prometheus
     url: ${RAILWAY_PROMETHEUS_URL:-http://prometheus.railway.internal:9090}
     basicAuth: false
-    editable: false
+    editable: true
     isDefault: false
   - name: Tempo
     type: tempo
@@ -55,8 +55,6 @@ datasources:
         hide: false
       traceQuery:
         timeShiftEnabled: true
-      streamingEnabled:
-        search: true
 
   - name: Sentry
     type: grafana-sentry-datasource
