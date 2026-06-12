@@ -24,9 +24,9 @@ scrape_configs:
     static_configs:
       - targets: ['${{Loki.RAILWAY_PRIVATE_DOMAIN}}:3100']
 
-  - job_name: 'opengradhub-backend'
+  - job_name: '${BACKEND_JOB_NAME:-opengradhub-backend}'
     scrape_interval: 5s
     metrics_path: /metrics
     static_configs:
-      - targets: ['${{opengradhub-backend.RAILWAY_PRIVATE_DOMAIN}}:4000']
+      - targets: ['${BACKEND_TARGET:-opengradhub-backend.railway.internal:4000}']
 

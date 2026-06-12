@@ -422,7 +422,7 @@
             "uid": "grafana_loki"
           },
           "editorMode": "code",
-          "expr": "{job=\"opengradhub-backend\"}",
+          "expr": "{job=~\".*opengradhub-backend\"}",
           "queryType": "range",
           "refId": "A"
         }
@@ -459,7 +459,7 @@
             "uid": "grafana_loki"
           },
           "editorMode": "code",
-          "expr": "{job=\"opengradhub-backend\"} |= \"\\\"kind\\\":\\\"http_request\\\"\"",
+          "expr": "{job=~\".*opengradhub-backend\"} |= \"\\\"kind\\\":\\\"http_request\\\"\"",
           "queryType": "range",
           "refId": "A"
         }

@@ -30,10 +30,10 @@ exporters:
     endpoint: "0.0.0.0:8889"
 
   otlphttp/loki:
-    endpoint: "${env:RAILWAY_LOKI_ENDPOINT:-http://${{Loki.RAILWAY_PRIVATE_DOMAIN}}:3100/otlp}" # http://<loki-addr>:3100/otlp
+    endpoint: "${env:RAILWAY_LOKI_ENDPOINT:-http://loki.railway.internal:3100/otlp}" # http://<loki-addr>:3100/otlp
 
   otlp/tempo:
-    endpoint: "${env:RAILWAY_TEMPO_ENDPOINT:-${{Tempo.RAILWAY_PRIVATE_DOMAIN}}:4317}" # <tempo-addr>:4317
+    endpoint: "${env:RAILWAY_TEMPO_ENDPOINT:-tempo.railway.internal:4317}" # <tempo-addr>:4317
     tls:
       insecure: true
 
