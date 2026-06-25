@@ -12,4 +12,5 @@ exec /bin/prometheus \
       --web.console.libraries=/usr/share/prometheus/console_libraries \
       --web.console.templates=/usr/share/prometheus/consoles \
       --web.external-url=http://localhost:9090 \
-      --log.level=info
+      --log.level=info \
+      --log.format=json

@@ -58,6 +58,9 @@ extensions:
     endpoint: :55679
 
 service:
+  telemetry:
+    logs:
+      encoding: json
   extensions: [pprof, zpages, health_check]
   pipelines:
     traces:
