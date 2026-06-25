@@ -38,7 +38,7 @@
       "gridPos": { "h": 6, "w": 6, "x": 0, "y": 1 },
       "id": 101,
       "options": { "colorMode": "value", "graphMode": "none", "justifyMode": "auto", "textMode": "auto" },
-      "targets": [ { "datasource": { "type": "postgres", "uid": "grafana_postgres" }, "format": "table", "rawQuery": true, "rawSql": "SELECT count(*) FROM users WHERE role = 'student';", "refId": "A" } ],
+      "targets": [ { "datasource": { "type": "postgres", "uid": "grafana_postgres" }, "format": "table", "rawQuery": true, "rawSql": "SELECT count(*) FROM users u INNER JOIN roles r ON u.role_id = r.id WHERE r.code = 'STUDENT';", "refId": "A" } ],
       "title": "Total Students Enrolled",
       "type": "stat"
     },
@@ -54,7 +54,7 @@
       "gridPos": { "h": 6, "w": 6, "x": 6, "y": 1 },
       "id": 102,
       "options": { "colorMode": "value", "graphMode": "none", "justifyMode": "auto", "textMode": "auto" },
-      "targets": [ { "datasource": { "type": "postgres", "uid": "grafana_postgres" }, "format": "table", "rawQuery": true, "rawSql": "SELECT count(*) FROM courses WHERE status = 'published';", "refId": "A" } ],
+      "targets": [ { "datasource": { "type": "postgres", "uid": "grafana_postgres" }, "format": "table", "rawQuery": true, "rawSql": "SELECT count(*) FROM courses WHERE status = 'ACTIVE';", "refId": "A" } ],
       "title": "Active Courses",
       "type": "stat"
     },
@@ -86,7 +86,7 @@
       "gridPos": { "h": 6, "w": 6, "x": 18, "y": 1 },
       "id": 104,
       "options": { "colorMode": "value", "graphMode": "none", "justifyMode": "auto", "textMode": "auto" },
-      "targets": [ { "datasource": { "type": "postgres", "uid": "grafana_postgres" }, "format": "table", "rawQuery": true, "rawSql": "SELECT count(*) FROM doubts WHERE status = 'open';", "refId": "A" } ],
+      "targets": [ { "datasource": { "type": "postgres", "uid": "grafana_postgres" }, "format": "table", "rawQuery": true, "rawSql": "SELECT count(*) FROM doubts WHERE status = 'OPEN';", "refId": "A" } ],
       "title": "Open Doubts",
       "type": "stat"
     },
