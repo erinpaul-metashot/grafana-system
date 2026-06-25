@@ -1,0 +1,158 @@
+{
+  "annotations": {
+    "list": [
+      {
+        "builtIn": 1,
+        "datasource": {
+          "type": "grafana",
+          "uid": "-- Grafana --"
+        },
+        "enable": true,
+        "hide": true,
+        "iconColor": "rgba(0, 211, 255, 1)",
+        "name": "Annotations & Alerts",
+        "type": "dashboard"
+      }
+    ]
+  },
+  "editable": true,
+  "graphTooltip": 0,
+  "id": null,
+  "links": [],
+  "panels": [
+    {
+      "type": "row",
+      "title": "Business KPIs - OpenGrad Hub",
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 0 },
+      "id": 100
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "grafana_postgres"
+      },
+      "fieldConfig": {
+        "defaults": { "color": { "mode": "palette-classic" }, "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": null } ] } },
+        "overrides": []
+      },
+      "gridPos": { "h": 6, "w": 6, "x": 0, "y": 1 },
+      "id": 101,
+      "options": { "colorMode": "value", "graphMode": "none", "justifyMode": "auto", "textMode": "auto" },
+      "targets": [ { "datasource": { "type": "postgres", "uid": "grafana_postgres" }, "format": "table", "rawQuery": true, "rawSql": "SELECT count(*) FROM users WHERE role = 'student';", "refId": "A" } ],
+      "title": "Total Students Enrolled",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "grafana_postgres"
+      },
+      "fieldConfig": {
+        "defaults": { "color": { "mode": "palette-classic" }, "thresholds": { "mode": "absolute", "steps": [ { "color": "blue", "value": null } ] } },
+        "overrides": []
+      },
+      "gridPos": { "h": 6, "w": 6, "x": 6, "y": 1 },
+      "id": 102,
+      "options": { "colorMode": "value", "graphMode": "none", "justifyMode": "auto", "textMode": "auto" },
+      "targets": [ { "datasource": { "type": "postgres", "uid": "grafana_postgres" }, "format": "table", "rawQuery": true, "rawSql": "SELECT count(*) FROM courses WHERE status = 'published';", "refId": "A" } ],
+      "title": "Active Courses",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "grafana_postgres"
+      },
+      "fieldConfig": {
+        "defaults": { "color": { "mode": "palette-classic" }, "thresholds": { "mode": "absolute", "steps": [ { "color": "orange", "value": null } ] } },
+        "overrides": []
+      },
+      "gridPos": { "h": 6, "w": 6, "x": 12, "y": 1 },
+      "id": 103,
+      "options": { "colorMode": "value", "graphMode": "none", "justifyMode": "auto", "textMode": "auto" },
+      "targets": [ { "datasource": { "type": "postgres", "uid": "grafana_postgres" }, "format": "table", "rawQuery": true, "rawSql": "SELECT count(*) FROM quiz_attempts;", "refId": "A" } ],
+      "title": "Total Quiz Attempts",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "postgres",
+        "uid": "grafana_postgres"
+      },
+      "fieldConfig": {
+        "defaults": { "color": { "mode": "palette-classic" }, "thresholds": { "mode": "absolute", "steps": [ { "color": "purple", "value": null } ] } },
+        "overrides": []
+      },
+      "gridPos": { "h": 6, "w": 6, "x": 18, "y": 1 },
+      "id": 104,
+      "options": { "colorMode": "value", "graphMode": "none", "justifyMode": "auto", "textMode": "auto" },
+      "targets": [ { "datasource": { "type": "postgres", "uid": "grafana_postgres" }, "format": "table", "rawQuery": true, "rawSql": "SELECT count(*) FROM doubts WHERE status = 'open';", "refId": "A" } ],
+      "title": "Open Doubts",
+      "type": "stat"
+    },
+    {
+      "type": "row",
+      "title": "Technical Observability & Health",
+      "gridPos": { "h": 1, "w": 24, "x": 0, "y": 7 },
+      "id": 200
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "grafana_prometheus"
+      },
+      "fieldConfig": {
+        "defaults": { "color": { "mode": "palette-classic" }, "thresholds": { "mode": "absolute", "steps": [ { "color": "green", "value": null }, { "color": "orange", "value": 0.1 }, { "color": "red", "value": 0.5 } ] }, "unit": "s" },
+        "overrides": []
+      },
+      "gridPos": { "h": 8, "w": 8, "x": 0, "y": 8 },
+      "id": 201,
+      "options": { "colorMode": "value", "graphMode": "area", "justifyMode": "center", "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false }, "textMode": "auto" },
+      "targets": [ { "datasource": { "type": "prometheus", "uid": "grafana_prometheus" }, "editorMode": "code", "expr": "(sum(rate(http_request_duration_seconds_sum{route!=\"/metrics\"}[5m])) / clamp_min(sum(rate(http_request_duration_seconds_count{route!=\"/metrics\"}[5m])), 0.001)) or vector(0)", "instant": true, "refId": "A" } ],
+      "title": "Average Backend Latency",
+      "type": "stat"
+    },
+    {
+      "datasource": {
+        "type": "prometheus",
+        "uid": "grafana_prometheus"
+      },
+      "gridPos": { "h": 8, "w": 16, "x": 8, "y": 8 },
+      "id": 202,
+      "targets": [ { "datasource": { "type": "prometheus", "uid": "grafana_prometheus" }, "editorMode": "code", "expr": "sum by (route) (rate(http_requests_total{route!=\"/metrics\"}[5m]))", "legendFormat": "{{route}}", "range": true, "refId": "A" } ],
+      "title": "Request Rate by Route",
+      "type": "timeseries"
+    },
+    {
+      "datasource": {
+        "type": "loki",
+        "uid": "grafana_loki"
+      },
+      "gridPos": { "h": 10, "w": 12, "x": 0, "y": 16 },
+      "id": 203,
+      "targets": [ { "datasource": { "type": "loki", "uid": "grafana_loki" }, "editorMode": "code", "expr": "{job=~\".*opengradhub-backend\"} |~ \"error|exception|fail\"", "queryType": "range", "refId": "A" } ],
+      "title": "Backend Error Logs",
+      "type": "logs"
+    },
+    {
+      "datasource": {
+        "type": "grafana-sentry-datasource",
+        "uid": "grafana_sentry"
+      },
+      "gridPos": { "h": 10, "w": 12, "x": 12, "y": 16 },
+      "id": 204,
+      "targets": [ { "datasource": { "type": "grafana-sentry-datasource", "uid": "grafana_sentry" }, "limit": 10, "query": "is:unresolved", "queryType": "issues", "refId": "A" } ],
+      "title": "Unresolved Sentry Issues",
+      "type": "table"
+    }
+  ],
+  "refresh": "1m",
+  "schemaVersion": 39,
+  "style": "dark",
+  "tags": [ "lms", "advanced", "business" ],
+  "templating": { "list": [] },
+  "time": { "from": "now-1h", "to": "now" },
+  "title": "Advanced LMS & Observability Dashboard",
+  "uid": "opg-advanced-lms",
+  "version": 1
+}

@@ -67,6 +67,20 @@ datasources:
     secureJsonData:
       authToken: ${SENTRY_AUTH_TOKEN}
 
+  - name: PostgreSQL
+    type: postgres
+    access: proxy
+    orgId: 1
+    uid: grafana_postgres
+    url: ${PGHOST}:${PGPORT}
+    user: ${PGUSER}
+    secureJsonData:
+      password: ${PGPASSWORD}
+    jsonData:
+      database: ${PGDATABASE}
+      sslmode: disable
+      postgresVersion: 15
+    editable: true
 
   # These two service have the same function with Tempo, no need to use all three.
   # - name: Jaeger
