@@ -6,6 +6,6 @@ COPY dashboards.yml /etc/grafana/provisioning/dashboards/dashboards.yml
 COPY dashboards/ /etc/grafana/dashboards/
 
 ENV GF_INSTALL_PLUGINS=grafana-piechart-panel,grafana-worldmap-panel,grafana-clock-panel,grafana-simple-json-datasource,grafana-sentry-datasource
-ENV GF_LOG_MODE="console json"
+ENV GF_LOG_CONSOLE_FORMAT="json"
 
 EXPOSE 3000

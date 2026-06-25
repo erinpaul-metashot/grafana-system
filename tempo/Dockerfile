@@ -13,4 +13,4 @@ COPY tempo.yml /etc/tempo/tempo.yml
 # Tempo listens on the following ports:
 EXPOSE 3200 9095 4317 4318 14268 9411
 
-CMD ["-config.file=/etc/tempo/tempo.yml", "-log.format=json"]
+CMD ["-config.file=/etc/tempo/tempo.yml"]
