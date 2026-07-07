@@ -8,7 +8,8 @@ sed -i "s/\${BACKEND_JOB_NAME}/$BACKEND_JOB_NAME/g" /etc/prometheus/prometheus.y
 exec /bin/prometheus \
       --config.file=/etc/prometheus/prometheus.yml \
       --storage.tsdb.path=/prometheus \
-      --storage.tsdb.retention.time=15d \
+      --storage.tsdb.retention.time=7d \
+      --storage.tsdb.retention.size=1GB \
       --web.console.libraries=/usr/share/prometheus/console_libraries \
       --web.console.templates=/usr/share/prometheus/consoles \
       --web.external-url=http://localhost:9090 \

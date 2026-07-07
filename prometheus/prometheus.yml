@@ -1,24 +1,16 @@
 global:
-  scrape_interval: 15s
+  scrape_interval: 30s
   external_labels:
     monitor: 'railway-prometheus'
 
 scrape_configs:
-  - job_name: 'local-prometheus'
-    static_configs:
-      - targets: ['localhost:9090']
-
   - job_name: 'otel-collector'
     static_configs:
       - targets: ['otel-collector.railway.internal:8889']
-
-  - job_name: 'tempo'
-    static_configs:
-      - targets: ['tempo.railway.internal:3200']
-
-  - job_name: 'loki'
-    static_configs:
-      - targets: ['loki.railway.internal:3100']
+    metric_relabel_configs:
+      - source_labels: [__name__]
+        regex: 'go_.*|otelcol_.*|grpc_.*|process_.*|promhttp_.*'
+        action: drop
 
   - job_name: '${BACKEND_JOB_NAME}'
     metrics_path: /metrics

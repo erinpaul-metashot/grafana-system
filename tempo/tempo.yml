@@ -20,7 +20,7 @@ storage:
 
 compactor:
   compaction:
-    block_retention: 720h  # default is 336h
+    block_retention: 168h  # default is 336h
 
 distributor:
   receivers:
@@ -44,4 +44,4 @@ metrics_generator:
         send_exemplars: true
 
 overrides:
-  metrics_generator_processors: [service-graphs, span-metrics]
+  metrics_generator_processors: []

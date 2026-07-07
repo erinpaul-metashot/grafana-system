@@ -49,19 +49,19 @@ ruler:
   enable_api: true
   
 pattern_ingester:
-  enabled: true
-  metric_aggregation:
-    loki_address: localhost:3100
+  enabled: false
+  # metric_aggregation:
+  #   loki_address: localhost:3100
 
 limits_config:
   volume_enabled: true
-  retention_period: 720h
+  retention_period: 168h
   # retention_stream:
   # - selector: '{environment="development"}'
   #   priority: 1
   #   period: 3d
   allow_structured_metadata: true
-  metric_aggregation_enabled: true
+  metric_aggregation_enabled: false
 
 query_range:
   align_queries_with_step: true
@@ -71,4 +71,4 @@ query_range:
     cache:
       embedded_cache:
         enabled: true
-        max_size_mb: 500
+        max_size_mb: 100
