@@ -71,7 +71,7 @@
             "uid": "grafana_prometheus"
           },
           "editorMode": "code",
-          "expr": "sum(http_requests_total{route!=\"/metrics\"}) or vector(0)",
+          "expr": "sum(http_requests_total{route!~\"/metrics|/events/stream\"}) or vector(0)",
           "instant": true,
           "refId": "A"
         }
@@ -139,7 +139,7 @@
             "uid": "grafana_prometheus"
           },
           "editorMode": "code",
-          "expr": "(sum(rate(http_request_duration_seconds_sum{route!=\"/metrics\"}[5m])) / clamp_min(sum(rate(http_request_duration_seconds_count{route!=\"/metrics\"}[5m])), 0.001)) or vector(0)",
+          "expr": "(sum(rate(http_request_duration_seconds_sum{route!~\"/metrics|/events/stream\"}[5m])) / clamp_min(sum(rate(http_request_duration_seconds_count{route!~\"/metrics|/events/stream\"}[5m])), 0.001)) or vector(0)",
           "instant": true,
           "refId": "A"
         }
@@ -207,7 +207,7 @@
             "uid": "grafana_prometheus"
           },
           "editorMode": "code",
-          "expr": "histogram_quantile(0.95, sum by (le) (rate(http_request_duration_seconds_bucket{route!=\"/metrics\"}[5m]))) or vector(0)",
+          "expr": "histogram_quantile(0.95, sum by (le) (rate(http_request_duration_seconds_bucket{route!~\"/metrics|/events/stream\"}[5m]))) or vector(0)",
           "instant": true,
           "refId": "A"
         }
@@ -295,7 +295,7 @@
             "uid": "grafana_prometheus"
           },
           "editorMode": "code",
-          "expr": "sum by (route) (rate(http_requests_total{route!=\"/metrics\"}[5m]))",
+          "expr": "sum by (route) (rate(http_requests_total{route!~\"/metrics|/events/stream\"}[5m]))",
           "legendFormat": "{{route}}",
           "range": true,
           "refId": "A"
@@ -384,7 +384,7 @@
             "uid": "grafana_prometheus"
           },
           "editorMode": "code",
-          "expr": "sum by (status_code) (rate(http_requests_total{route!=\"/metrics\"}[5m]))",
+          "expr": "sum by (status_code) (rate(http_requests_total{route!~\"/metrics|/events/stream\"}[5m]))",
           "legendFormat": "{{status_code}}",
           "range": true,
           "refId": "A"

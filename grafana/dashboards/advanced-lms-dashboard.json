@@ -108,7 +108,7 @@
       "gridPos": { "h": 8, "w": 8, "x": 0, "y": 8 },
       "id": 201,
       "options": { "colorMode": "value", "graphMode": "area", "justifyMode": "center", "reduceOptions": { "calcs": [ "lastNotNull" ], "fields": "", "values": false }, "textMode": "auto" },
-      "targets": [ { "datasource": { "type": "prometheus", "uid": "grafana_prometheus" }, "editorMode": "code", "expr": "(sum(rate(http_request_duration_seconds_sum{route!=\"/metrics\"}[5m])) / clamp_min(sum(rate(http_request_duration_seconds_count{route!=\"/metrics\"}[5m])), 0.001)) or vector(0)", "instant": true, "refId": "A" } ],
+      "targets": [ { "datasource": { "type": "prometheus", "uid": "grafana_prometheus" }, "editorMode": "code", "expr": "(sum(rate(http_request_duration_seconds_sum{route!~\"/metrics|/events/stream\"}[5m])) / clamp_min(sum(rate(http_request_duration_seconds_count{route!~\"/metrics|/events/stream\"}[5m])), 0.001)) or vector(0)", "instant": true, "refId": "A" } ],
       "title": "Average Backend Latency",
       "type": "stat"
     },
@@ -119,7 +119,7 @@
       },
       "gridPos": { "h": 8, "w": 16, "x": 8, "y": 8 },
       "id": 202,
-      "targets": [ { "datasource": { "type": "prometheus", "uid": "grafana_prometheus" }, "editorMode": "code", "expr": "sum by (route) (rate(http_requests_total{route!=\"/metrics\"}[5m]))", "legendFormat": "{{route}}", "range": true, "refId": "A" } ],
+      "targets": [ { "datasource": { "type": "prometheus", "uid": "grafana_prometheus" }, "editorMode": "code", "expr": "sum by (route) (rate(http_requests_total{route!~\"/metrics|/events/stream\"}[5m]))", "legendFormat": "{{route}}", "range": true, "refId": "A" } ],
       "title": "Request Rate by Route",
       "type": "timeseries"
     },
